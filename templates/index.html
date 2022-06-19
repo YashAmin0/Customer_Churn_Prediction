@@ -1,0 +1,101 @@
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Customer details</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+<style>
+body  {
+  background-color: #2193b0;
+}
+
+.result {
+    margin: auto;
+    width: 35%;
+    border: 2px groove;
+}
+</style>
+<body>
+ <div class="predict">
+	<h2 style="margin: auto; width: 35%; padding: 1%; border: 2px solid; text-align: center;">Customer churn Prediction</h2>
+
+     
+    <form action="{{ url_for('predict')}}"method="post">
+			<p><b>Credit score:</b></p>  <input name="CreditScore">
+			<br>
+		
+			<p><b>Country:</b></p>
+			<select name="Geography" required="required">
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Spain">Spain</option>
+            </select>
+			<br>
+			
+			<p><b>Gender:</b></p>
+			<input type="radio" id="Male" name="Gender" value="1" required="required" />
+			<label for="Male">Male</label>
+			<input type="radio" id="Female" name="Gender" value="2" required="required" />
+			<label for="Female">Female</label>
+			<br>
+			<br>
+			
+			<label for="age"><b>Age:</b></label>
+			<input type="text" name="Age" required="required" />
+			<br>
+			<br>
+			
+			<p><b>Tenure:</b><br>
+			<input type="text" name="Tenure" placeholder="Tenure" required="required" />
+			<br>
+			<br>
+			
+			<p><b>Balance:</b><br>
+			<input type="text" name="Balance" placeholder="Balance" required="required" />
+			<br>
+			<br>
+			
+			<p><b>Num Of Products purchased through bank:</b><br>
+			<input type="text" name="NumOfProducts" placeholder="Num Of Products" required="required" />
+			<br>
+			<br>
+			
+			<p><b>Do you have credit card?</b><br>
+			<input type="text" name="HasCrCard" placeholder="Enter 1 if you have else 0" type = "number" required="required" />
+			<br>
+			<br>
+			
+			<p><b>Are you an active member of bank?</b><br>
+			<input type="text" name="IsActiveMember" placeholder="Enter 1 if you are else 0" type = "number"  required="required" />
+			<br>
+			<br>
+			
+			<p><b>Estimated Salary :- </b><br>
+			<input type="text" name="EstimatedSalary" placeholder="Estimated Salary" required="required" />
+			<br>
+			<br>
+			
+			
+		
+			
+		</fieldset>
+		<br>
+		<div style="text-align:center;">
+			<button type="submit" class="btn btn-primary btn-block btn-large"><b>Predict</b></button>
+		</div>
+    </form>
+	<div class="result" align="center">
+		{% if prediction_text %}
+			<p style="padding: 0.5%"><b>{{ prediction_text }}</b></p>
+		{% endif %}	
+	</div>
+ </div>
+
+
+</body>
+</html>
